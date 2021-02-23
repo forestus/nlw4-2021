@@ -1,4 +1,6 @@
+import "reflect-metadata"
 import express, { response } from 'express'
+import "./database"
 let server = express()
 
 
@@ -13,7 +15,7 @@ server.get("/user", (require,response)=>{
    ) 
 })
 
-server.post("/:users",(require,response)=>{
+server.post("/users/:id",(require,response)=>{
     return
 })
 
