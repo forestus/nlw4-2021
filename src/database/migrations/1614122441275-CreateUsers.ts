@@ -7,16 +7,31 @@ export class CreateUsers1614122441275 implements MigrationInterface {
             new Table({
                 name: "users",
                 columns: [
-                    {},
-                    {},
-                    {},
-                    {},
+                    {
+                        name: "id",
+                        type: "uuid",
+                        isPrimary: true
+                    },
+                    {
+                        name: "nome",
+                        type: "varchar"
+                    },
+                    {
+                        name: "email",
+                        type: "varchar"
+                    },
+                    {
+                        name: "created_at",
+                        type: "varchar",
+                        default: "now()"
+                    },
                 ]
             })
         )
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropTable("users")
     }
 
 }
