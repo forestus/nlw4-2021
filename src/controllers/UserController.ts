@@ -5,7 +5,8 @@ import { UsersRepository } from "../repositories/UsersRepository"
 
 class UserController {
     async create(request: Request, response: Response) {
-        const { name, email } = request.body;
+        const { name, email } = request.body; 
+        console.log(request.body)
         const usersRepository = getCustomRepository(UsersRepository);
 
         //verifica se já possui um usuario com esse email.
@@ -21,6 +22,7 @@ class UserController {
         const user = usersRepository.create({
             name, email
         });
+        console.log(user.name)
         await usersRepository.save(user);
         return response.status(201).json(user);
     } 
