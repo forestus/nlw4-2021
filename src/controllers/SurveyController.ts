@@ -1,5 +1,6 @@
 import { Request, Response } from "express"
 import { getCustomRepository } from "typeorm";
+import { AppError } from "../errors/AppError";
 import { SurveysRepository } from "../repositories/SurveysRepository";
 
 class SurveyController {
@@ -8,9 +9,7 @@ class SurveyController {
         const surveysRepository = getCustomRepository(SurveysRepository)
         const surveyAreadyExists = await surveysRepository.findOne({ title })
         if (surveyAreadyExists) {
-            return response.status(400).json({
-                error: "this Survey Already Exists!"
-            })
+            throw new AppError("this Survey Already Exists!")
         }
         const survey = surveysRepository.create({
             title, description
